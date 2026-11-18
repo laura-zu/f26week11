@@ -74,6 +74,12 @@ article div{
     font-weight: bold;
     background-color: rgb(186, 199, 221);
     border: 2px solid blueviolet;
+
+
+/* you can add flexbox inside of a grid (or grid inside of flexbox) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /***********************************************
@@ -85,10 +91,81 @@ section.one article{
     with display: grid */
     display: grid;
 
-/* tell the grid how many columns it should have
+    /* tell the grid how many columns it should have
    fr stands for fraction, and it means to use a part of the available space */
-    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-columns: 200px 2fr 1fr;
 
-/* you can also control rows -but in this example, the third row won't have a defined height */
+    /* you can also control rows -but in this example, the third row won't have a defined height */
     grid-template-rows:  120px 120px;
+}
+
+section.two article {
+    display: grid;
+
+    /* with grid, you have an explicit grid (what you define)
+    and a implicit grid (what the browser automatically fills out) */
+
+    grid-template-columns: repeat(4, 1fr);
+
+    /* for rows, you can tell each row to automatically take on a property, no matter how many */
+
+    grid-auto-rows: 120px;
+
+    /* tell the grid to automatically fill spaces left by elements that were too big */
+
+    grid-auto-flow: dense;
+}
+
+section.two div:nth-child(1){
+    /* you can tell a cell to start and end at a row or column  */
+
+    grid-column-start: 1;
+    grid-column-end: 3;
+
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(2){
+    grid-column-start: 2;
+    grid-column-end: 5;
+
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+section.two div:nth-child(6) {
+
+    grid-column-start: 1;
+/* you can use span to tell it to stretch accross a specific number of columns */
+    grid-column-end: span 4;
+}
+
+section.three article {
+    display: grid;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-auto-rows: 120px;
+    grid-auto-flow: dense;
+
+    /* you can put space between rows and columns with gap*/
+
+    gap: 1em 1em;
+}
+
+section.three div:nth-child(2){
+    /* another way to move grid cells is with order
+    by default everything has an order of 0 - anything 
+    with a higher order comes later, anything with a lower order comes earlier */
+    order: 1;
+}
+
+section.three div:nth-child(5){
+    grid-area: 2 / 1 / span 2 / span 2;
+
+    /* this is equivalent to writing:
+    grid-column-start: 2
+    grid-column-end: span 2 
+    grid-row-start: 1
+    grid-row-end: span 2 */
 }
