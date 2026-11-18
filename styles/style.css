@@ -73,5 +73,22 @@ article div{
     font-size: 32px;
     font-weight: bold;
     background-color: rgb(186, 199, 221);
-    border: 2px solid violet;
+    border: 2px solid blueviolet;
+}
+
+/***********************************************
+               GRID STYLES
+***********************************************/
+
+section.one article{
+    /* like display flex, you need to have a grid container
+    with display: grid */
+    display: grid;
+
+/* tell the grid how many columns it should have
+   fr stands for fraction, and it means to use a part of the available space */
+    grid-template-columns: 1fr 2fr 1fr;
+
+/* you can also control rows -but in this example, the third row won't have a defined height */
+    grid-template-rows:  120px 120px;
 }
